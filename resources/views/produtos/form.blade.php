@@ -38,7 +38,7 @@
                         <div class="row mb-3">
                             <div class="col-md-8">
                                 <label for="descricao">Descrição</label>
-                                <textarea name="descricao" rows="5" class="form-control">{{ $produto->descricao }}</textarea>
+                                <textarea name="descricao" rows="5" class="form-control">{{ $produto->getDescricao() }}</textarea>
                             </div>
                         </div>
 
