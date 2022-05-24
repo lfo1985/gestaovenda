@@ -49,6 +49,8 @@ Route::post('/produtos/realizaCadastro', [App\Http\Controllers\produtoController
 Route::post('/produtos/realizaEdicao/{id}', [App\Http\Controllers\produtoController::class, 'update'])->name('realizaEdicaoProdutos');
 // Realiza a exclusão do cliente
 Route::get('/produtos/apagar/{id}', [App\Http\Controllers\produtoController::class, 'destroy'])->name('apagarProdutos');
+// Retorna os dados do produto
+Route::get('/produto/dados/{id}', [App\Http\Controllers\produtoController::class, 'show'])->name('dadosProduto');
 
 // ------------------------------- Rota para a entidade Venda -------------------------------
 // Abre o formulário para lançar a venda

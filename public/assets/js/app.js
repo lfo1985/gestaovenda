@@ -185,3 +185,21 @@ function alertaSucesso(message, callback = null){
       prevText: 'Anterior'
     });
   }
+
+  /**
+   * Formata um valor monetário de número flutuante para string
+   * @param {decimal} valor 
+   * @returns 
+   */
+  function formataMoeda(valor){
+    return valor != '' ? parseFloat(valor).toLocaleString('pt-BR', { minimumFractionDigits: 2 , currency: 'BRL'}) : '0,00';
+  }
+
+  /**
+   * Faz a formatação inversa do valor monetário de texto para número flutuante
+   * @param {string} valor 
+   * @returns 
+   */
+  function formatMoedaReversso(valor){
+    return valor != '' ? parseFloat(valor.replace(',', '.')) : 0.00;
+  }

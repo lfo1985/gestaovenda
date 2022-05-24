@@ -37,8 +37,8 @@
                         <div id="itensVenda" class="mb-4">
                             
                             <div class="bg-light itemVenda d-flex justify-content-between border p-2 mb-3">
-                                <div class="row inputsDados">
-                                    <div class="col-md-8">
+                                <div class="row inputsDados w-75">
+                                    <div class="col-md-4">
                                         <label for="Produto">Produto</label>
                                         <select name="itemVendas[0][idProduto]" class="form-select">
                                             <option value=""></option>
@@ -47,13 +47,25 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                         <label for="quantidadeItens">Quantidade</label>
                                         <input type="number" name="itemVendas[0][quantidadeItens]" class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Valor Unitário</label>
+                                        <input type="text" class="valor form-control" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Valor Total</label>
+                                        <input type="text" class="valorTotal form-control" readonly>
                                     </div>
                                 </div>
                             </div>
 
+                        </div>
+
+                        <div class="mb-4">
+                            <h3>Valor total da venda: <span id="valorTotalGeral">0,00</span> </h3>
                         </div>
 
                         <div class="row">
@@ -81,7 +93,6 @@
         <p>O que deseja fazer agora?</p>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
         <a href="{{route('registrarVenda')}}" class="btn btn-primary">Registrar outra venda</a>
         <a href="{{route('relatorioVenda')}}" class="btn btn-success">Ir para o relatório</a>
       </div>

@@ -66,6 +66,28 @@ class produtoController extends Controller
     }
 
     /**
+     * Retorna os dados de um produto selecionado
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+        $produto = produto::find($id);
+        
+        return response()->json([
+            'id' => $produto->getId(),
+            'codReferencia' => $produto->getCodReferencia(),
+            'descricao' => $produto->getDescricao(),
+            'marca' => $produto->getMarca(),
+            'valor' => $produto->getValor(),
+            'quantidade' => $produto->getQuantidade()
+        ]);
+        
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

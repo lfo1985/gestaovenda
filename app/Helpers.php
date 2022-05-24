@@ -110,3 +110,12 @@ function string2decimal($valor){
 function formataDinheiroBr($valor){
     return number_format($valor, 2, ',', '.');
 }
+
+/**
+ * Função que converte todo o array em objeto
+ * 
+ * @param array $array
+ */
+function array2object($array){
+    return json_decode(json_encode(array_values($array)));
+}

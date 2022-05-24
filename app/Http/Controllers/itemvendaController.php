@@ -39,7 +39,46 @@ class itemvendaController extends Controller
     public function report()
     {
 
-        return view('vendas.relatorio', ['dados' => itemvenda::all()->sortByDesc('id')]);
+        $dados = itemvenda::all()->sortByDesc('id');
+
+        $dadosOrganizados = [];
+
+        if($dados){
+            foreach ($dados as $item) {
+                $dadosOrganizados[$item->idVenda]['dados'] = [
+                    'codVenda' => str_pad($item->getIdVenda(), 5, 0, STR_PAD_LEFT),
+                    'data' => $item->venda->getDataPedido(),
+                    'cliente' => $item->venda->cliente->getNome(),
+                    'quantidade' => 0,
+                    'total' => 0,
+                    'json' => ''
+                ];
+                $dadosOrganizados[$item->idVenda]['itens'][] = [
+                    'codVenda' =>str_pad($item->getIdVenda(), 5, 0, STR_PAD_LEFT),
+                    'codReferencia' => $item->produto->getCodReferencia(),
+                    'marca' => $item->produto->getMarca(),
+                    'valor' => $item->produto->getValor(),
+                    'quantidade' => $item->getQuantidadeItens(),
+                    'total' => $item->getQuantidadeItens() * $item->produto->getValor()
+                ];
+            }
+        }
+
+        $dadosFinaisRelatorio = array_map(function($item){
+
+            $arrayQuantidade = array_column($item->itens, 'quantidade');
+            $arrayTotal = array_column($item->itens, 'total');
+
+            $dados = $item->dados;
+            $dados->quantidade = array_sum($arrayQuantidade);
+            $dados->total = array_sum($arrayTotal);
+            $dados->json = json_encode($item->itens);
+
+            return $dados;
+
+        }, array2object($dadosOrganizados));
+
+        return view('vendas.relatorio', ['dados' => $dadosFinaisRelatorio]);
 
     }
 
