@@ -72,7 +72,7 @@
                     <ul class="navbar-nav me-auto">
                         @if(Auth::check())
                             <li class="nav-item me-2">
-                                <a class="nav-link text-white" aria-current="page" href="/home">
+                                <a class="nav-link text-white" aria-current="page" href="{{ url('/') }}">
                                     <span class="oi oi-home"></span>
                                     Home
                                 </a>
@@ -114,7 +114,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar') }}</a>
                                 </li>
                             @endif
                         @else
